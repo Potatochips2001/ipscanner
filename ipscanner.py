@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-import socket, threading
+import socket, threading, math
 
 openAddresses = []
 
-closedAddresses = []
 
 ipRange = input("First 3 octets of IPv4: ")
 
@@ -26,7 +25,6 @@ def scan(currentRange, _timeout):
     exit(openAddresses)
   except:
     print(f'{currentAddress}:{ipPort} CLOSED')
-    closedAddresses.append(currentAddress)
 
 _threads = []
 for i in range(256):
@@ -37,4 +35,10 @@ for i in range(256):
 for i in range(256):
   _threads[i].join()
 
-print(f'\n{openAddresses}')
+percentageOpen = math.floor( len(openAddresses)/255*100 )/100
+
+print('\nPrinting open addresses\n\n')
+
+print(', '.join(openAddresses))
+
+print(f'\n({percentageOpen}%)\n')
