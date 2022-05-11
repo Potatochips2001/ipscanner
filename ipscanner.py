@@ -46,7 +46,7 @@ for i in range(256):
 for i in range(256):
     _threads[i].join()
 
-percentageOpen = math.floor(len(openAddresses)/255*100)
+percentageOpen = math.floor(len(openAddresses)/256*100)
 
 print('\nPrinting open addresses\n\n')
 
